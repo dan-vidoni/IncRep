@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="libs/bootstrap/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <meta charset="UTF-8" />
+    <title>Reset Timer</title>
+  </head>
+  <body>
+    <div class="reset">
+      <div class="resetButtonContainer">
+        <button class="btn btn-primary" onClick="reset();">Reset Timer</button>
+        <button
+          type="button"
+          class="btn btn-dark"
+          onClick="closeResetWindow();"
+        >
+          Cancel
+        </button>
+      </div>
+      <div id="history"><h3>Historical data:</h3></div>
+    </div>
+
+    <script>
+      const { ipcRenderer } = require("electron");
+      document.getElementById("history").innerHTML +=
+        window.localStorage.historicalStartTimes;
+      function reset() {
+        ipcRenderer.send("reset");
+      }
+
+      function closeResetWindow() {
+        ipcRenderer.send("closeResetWindow");
+      }
+    </script>
+  </body>
+</html>

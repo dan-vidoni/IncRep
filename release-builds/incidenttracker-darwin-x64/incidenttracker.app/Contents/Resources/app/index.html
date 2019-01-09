@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="libs/bootstrap/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <script>
+      let $ = require("jquery");
+    </script>
+    <script type="text/javascript" src="./js/slideshow.js"></script>
+    <meta charset="UTF-8" />
+    <title>IncRep</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <div class="logo">
+          <img src="./assets/img/logo/logo.png" alt="Valeo" />
+        </div>
+        <div class="headerMessage"><p>Default should be overwritten</p></div>
+      </div>
+    </nav>
+    <div class="mainContainer container-fluid">
+      <div class="left">
+        <p>ZILE DE LA ULTIMUL INCIDENT</p>
+        <div class="counter" id="counter">
+          <!-- <span class="timeel days">00</span>
+          <span class="timeel timeRefDays">days</span>
+          <span class="timeel hours">00</span>
+          <span class="timeel timeRefHours">hours</span>
+          <span class="timeel minutes">00</span>
+          <span class="timeel timeRefMinutes">minutes</span> -->
+          <span class="timeel seconds">00</span>
+          <!-- <span class="timeel timeRefSeconds">seconds</span> -->
+        </div>
+      </div>
+      <div class="right">
+        <div class="slider" id="main-slider">
+          <div class="slider-wrapper"></div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="./js/headerMessage.js"></script>
+    <script type="text/javascript" src="./js/counter.js"></script>
+    <script>
+      const { ipcRenderer } = require("electron");
+      ipcRenderer.on("reset", function() {
+        resetTimer();
+      });
+    </script>
+  </body>
+</html>
