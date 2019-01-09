@@ -11,12 +11,12 @@ const path = require("path");
 //TODO change to production when publishing
 process.env.NODE_ENV = "production";
 
-let win;
-let resetWin;
+let mainWin;
+let dashboardWin;
 
 function createWindow() {
-  win = new BrowserWindow({});
-  win.loadURL(
+  mainWin = new BrowserWindow({});
+  mainWin.loadURL(
     url.format({
       pathname: path.join(__dirname, "index.html"),
       protocol: "file:",
@@ -31,33 +31,38 @@ function createWindow() {
     createResetWindow();
   });
 
-  win.on("closed", () => {
-    win = null;
+  mainWin.on("closed", () => {
+    app.quit();
   });
 }
 
 function createResetWindow() {
-  resetWin = new BrowserWindow({ height: 200, width: 300 });
-  resetWin.loadURL(
+  dashboardWin = new BrowserWindow({ height: 350, width: 500 });
+  dashboardWin.loadURL(
     url.format({
-      pathname: path.join(__dirname, "reset.html"),
+      pathname: path.join(__dirname, "dashboard.html"),
       protocol: "file:",
       slashes: true
     })
   );
 
-  resetWin.on("close", function() {
-    resetWin = null;
+  dashboardWin.on("close", function() {
+    dashboardWin = null;
   });
 }
 
 ipcMain.on("reset", function() {
-  win.webContents.send("reset");
-  resetWin.close();
+  mainWin.webContents.send("reset");
+  dashboardWin.close();
 });
 
 ipcMain.on("closeResetWindow", function() {
-  resetWin.close();
+  dashboardWin.close();
+});
+
+ipcMain.on("submit", function(e, message) {
+  mainWin.webContents.send("submit", message);
+  dashboardWin.close();
 });
 
 const menuTemplate = [
@@ -100,7 +105,7 @@ app.on("window-all-closed", () => {
 });
 
 app.on("activate", () => {
-  if (win === null) {
+  if (mainWin === null) {
     createWindow();
   }
 });

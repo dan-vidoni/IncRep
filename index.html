@@ -20,7 +20,7 @@
         <div class="logo">
           <img src="./assets/img/logo/logo.png" alt="Valeo" />
         </div>
-        <div class="headerMessage"><p>Default should be overwritten</p></div>
+        <div class="headerMessage"><p></p></div>
       </div>
     </nav>
     <div class="mainContainer container-fluid">
@@ -43,12 +43,22 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="./js/headerMessage.js"></script>
     <script type="text/javascript" src="./js/counter.js"></script>
     <script>
       const { ipcRenderer } = require("electron");
       ipcRenderer.on("reset", function() {
         resetTimer();
+      });
+
+      const headerMessage = document.querySelector(".headerMessage");
+      window.localStorage.headerMessage =
+        window.localStorage.headerMessage ||
+        "Zile de la ultimul incident produs";
+      headerMessage.innerText = window.localStorage.headerMessage;
+
+      ipcRenderer.on("submit", function(e, message) {
+        window.localStorage.headerMessage = message;
+        headerMessage.innerText = window.localStorage.headerMessage;
       });
     </script>
   </body>

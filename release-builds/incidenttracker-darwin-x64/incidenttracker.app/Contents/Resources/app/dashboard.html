@@ -8,7 +8,7 @@
     />
     <link rel="stylesheet" type="text/css" href="./css/styles.css" />
     <meta charset="UTF-8" />
-    <title>Reset Timer</title>
+    <title>Dashboard</title>
   </head>
   <body>
     <div class="reset">
@@ -22,6 +22,18 @@
           Cancel
         </button>
       </div>
+      <div id="headerMessage">
+        <form>
+          <Label>Enter message:</Label>
+          <input
+            type="text"
+            id="message"
+            placeholder="Enter header message"
+            autofocus
+          />
+          <button class="btn btn-primary" type="submit">Set</button>
+        </form>
+      </div>
       <div id="history"><h3>Historical data:</h3></div>
     </div>
 
@@ -29,6 +41,13 @@
       const { ipcRenderer } = require("electron");
       document.getElementById("history").innerHTML +=
         window.localStorage.historicalStartTimes;
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function submitForm(e) {
+        e.preventDefault();
+        const message = document.querySelector("#message").value;
+        ipcRenderer.send("submit", message);
+      });
+
       function reset() {
         ipcRenderer.send("reset");
       }
