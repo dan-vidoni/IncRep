@@ -87,9 +87,9 @@ body {
 }
 
 .right {
-  margin: 5px;
+  margin: 5px 5px 5px 0;
   padding: 0;
-  width: 68%;
+  width: 69%;
 }
 
 .counter {
