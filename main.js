@@ -5,6 +5,7 @@ const {
   globalShortcut,
   ipcMain
 } = require("electron");
+const { addBypassChecker } = require("electron-compile");
 const url = require("url");
 const path = require("path");
 
@@ -13,6 +14,16 @@ const path = require("path");
 
 let mainWin;
 let dashboardWin;
+
+addBypassChecker(filePath => {
+  return (
+    filePath.indexOf(app.getAppPath()) === -1 &&
+    (/.jpg/.test(filePath) ||
+      /.ms/.test(filePath) ||
+      /.png/.test(filePath) ||
+      /.jpeg/.test(filePath))
+  );
+});
 
 function createWindow() {
   mainWin = new BrowserWindow({});
