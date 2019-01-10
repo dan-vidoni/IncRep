@@ -9,7 +9,7 @@ const url = require("url");
 const path = require("path");
 
 //TODO change to production when publishing
-process.env.NODE_ENV = "production";
+// process.env.NODE_ENV = "production";
 
 let mainWin;
 let dashboardWin;

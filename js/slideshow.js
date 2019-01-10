@@ -10,9 +10,10 @@ Slideshow.prototype = {
   init: function() {
     const imageFolder = path.join(__dirname, "./img/slideshow/");
     fs.readdirSync(imageFolder).forEach(file => {
-      $(".slider-wrapper").prepend(
-        '<img src="' + imageFolder + file + '" class="slide"/>'
-      );
+      if (file.includes("png") || file.includes("jpg") || file.includes("jpeg"))
+        $(".slider-wrapper").prepend(
+          '<img src="file://' + imageFolder + file + '" class="slide"/>'
+        );
     });
     this.wrapper = this.el.querySelector(".slider-wrapper");
     this.slides = this.el.querySelectorAll(".slide");
