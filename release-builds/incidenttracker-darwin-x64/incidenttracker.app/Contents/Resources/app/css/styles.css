@@ -7,7 +7,7 @@ body {
 }
 
 .nav-wrapper {
-  height: 70px;
+  height: 90px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -15,10 +15,14 @@ body {
   justify-content: space-between;
 }
 
-.nav-wrapper .logo {
+.logo {
   margin: 5px;
   padding: 0;
   width: 15%;
+}
+
+.logo img {
+  max-height: 100%;
 }
 
 .nav-wrapper .headerMessage {
@@ -27,7 +31,7 @@ body {
   width: 80%;
   /* Mihai Pop: mesajul din dreapta logoului */
   font-size: 30px;
-  line-height: 60px;
+  line-height: 80px;
 }
 
 .slider {
@@ -57,9 +61,9 @@ body {
 .mainContainer {
   margin: 0 auto;
   padding: 0;
-  height: -moz-calc(100% - 70px); /* Firefox */
-  height: -webkit-calc(100% - 70px); /* Chrome, Safari */
-  height: calc(100% - 70px); /* IE9+ and future browsers */
+  height: -moz-calc(100% - 90px); /* Firefox */
+  height: -webkit-calc(100% - 90px); /* Chrome, Safari */
+  height: calc(100% - 90px); /* IE9+ and future browsers */
   display: flex;
   flex-direction: row;
   justify-content: space-between;

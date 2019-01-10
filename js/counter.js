@@ -15,6 +15,7 @@ function recordHistoricalData() {
     );
   }
 }
+
 function resetTimer() {
   window.localStorage.startTime = new Date(Date.now());
   recordHistoricalData();
