@@ -7,7 +7,7 @@ body {
 }
 
 .nav-wrapper {
-  height: 90px;
+  height: 120px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -30,8 +30,8 @@ body {
   margin: 5px;
   width: 80%;
   /* Mihai Pop: mesajul din dreapta logoului */
-  font-size: 30px;
-  line-height: 80px;
+  font-size: 45px;
+  line-height: 110px;
 }
 
 .slider {
@@ -61,9 +61,9 @@ body {
 .mainContainer {
   margin: 0 auto;
   padding: 0;
-  height: -moz-calc(100% - 90px); /* Firefox */
-  height: -webkit-calc(100% - 90px); /* Chrome, Safari */
-  height: calc(100% - 90px); /* IE9+ and future browsers */
+  height: -moz-calc(100% - 120px); /* Firefox */
+  height: -webkit-calc(100% - 120px); /* Chrome, Safari */
+  height: calc(100% - 120px); /* IE9+ and future browsers */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -83,7 +83,7 @@ body {
 
 /* Mihai Pop: textul din stanga de deasupra counterului */
 .left p {
-  font-size: 30px;
+  font-size: 50px;
 }
 
 .right {
@@ -96,13 +96,13 @@ body {
   margin: 0 auto;
   text-align: center;
   /* Mihai Pop: contorul */
-  font-size: 30px;
+  font-size: 70px;
   font-weight: bold;
-  line-height: 80px;
+  line-height: 140px;
   background-color: white;
   border: 1px solid #4e6b7c;
-  width: 80px;
-  height: 80px;
+  width: 140px;
+  height: 140px;
 }
 
 .reset {
@@ -114,4 +114,10 @@ body {
 
 .resetButtonContainer {
   padding: 20px;
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -14,6 +14,9 @@
     <div class="reset">
       <div class="resetButtonContainer">
         <button class="btn btn-primary" onClick="reset();">Reset Timer</button>
+        <button class="btn btn-primary" onClick="clearHistoricalData();">
+          Clear historical data
+        </button>
         <button
           type="button"
           class="btn btn-dark"
@@ -50,6 +53,15 @@
 
       function reset() {
         ipcRenderer.send("reset");
+      }
+
+      function clearHistoricalData() {
+        const startTimes = window.localStorage.historicalStartTimes.split(
+          "<br/>"
+        );
+        window.localStorage.historicalStartTimes =
+          startTimes[startTimes.length - 2] + "<br/>";
+        window.close();
       }
 
       function closeResetWindow() {

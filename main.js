@@ -10,7 +10,7 @@ const url = require("url");
 const path = require("path");
 
 //TODO change to production when publishing
-// process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "production";
 
 let mainWin;
 let dashboardWin;
@@ -26,7 +26,7 @@ addBypassChecker(filePath => {
 });
 
 function createWindow() {
-  mainWin = new BrowserWindow({});
+  mainWin = new BrowserWindow({ fullscreen: true });
   mainWin.loadURL(
     url.format({
       pathname: path.join(__dirname, "index.html"),
@@ -48,7 +48,7 @@ function createWindow() {
 }
 
 function createResetWindow() {
-  dashboardWin = new BrowserWindow({ height: 350, width: 500 });
+  dashboardWin = new BrowserWindow({});
   dashboardWin.loadURL(
     url.format({
       pathname: path.join(__dirname, "dashboard.html"),
@@ -78,10 +78,10 @@ ipcMain.on("submit", function(e, message) {
 
 const menuTemplate = [
   {
-    label: "App",
+    label: "IncRec",
     submenu: [
       {
-        label: "Quit",
+        label: "Exit",
         accelerator: process.platform == "darwin" ? "Command+Q" : "Ctrl+Q",
         click() {
           app.quit();
@@ -91,7 +91,6 @@ const menuTemplate = [
   }
 ];
 
-//Add devtools for development mode
 if (process.env.NODE_ENV !== "production") {
   menuTemplate.push({
     label: "dev tools",
