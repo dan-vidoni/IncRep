@@ -76,33 +76,53 @@ body {
   justify-content: space-around;
   margin: 1% 0 1% 1%;
   padding: 0;
-  background-color: white;
   text-align: center;
   width: 50%;
 }
 
-.counterContainer {
+.item {
   flex: 48%;
-  margin: 1% auto;
+  margin: 1% 1% 1% 1%;
   max-width: 48%;
-  background-color: #82e600;
+  background-color: #8dc73f;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-/* Mihai Pop: textul din stanga de deasupra counterului */
+.item .omulet {
+  flex: 0 35%;
+  margin: 10% auto;
+  height: 80%;
+}
+
+.item .omulet img {
+  margin-top: 20%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.item .counter {
+  flex: 0 65%;
+  background-color: blue;
+  margin: 10% auto;
+  height: 80%;
+}
+
 .left p {
   font-size: 50px;
 }
 
 .right {
-  margin: 1% 1% 1% 0;
+  margin: 1.5% 1% 1.5% 0;
   padding: 0;
-  width: 49%;
+  width: 48%;
 }
 
-.counter {
+/* .counter {
   margin: 0 auto;
   text-align: center;
-  /* Mihai Pop: contorul */
   font-size: 70px;
   font-weight: bold;
   line-height: 140px;
@@ -110,7 +130,7 @@ body {
   border: 1px solid #4e6b7c;
   width: 140px;
   height: 140px;
-}
+} */
 
 .reset {
   display: flex;
