@@ -4,5 +4,5 @@ const moment = require("moment");
   setInterval(() => {
     var currentDate = document.getElementById("currentDate");
     currentDate.innerHTML = moment().format("L");
-  }, 5000);
+  }, 1000);
 })();
