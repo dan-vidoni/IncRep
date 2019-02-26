@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-size: 46px;
   color: #4e6b7c;
 }
 
@@ -29,8 +30,12 @@ body {
   padding: 0;
   margin: 5px;
   width: 80%;
-  /* Mihai Pop: mesajul din dreapta logoului */
-  font-size: 45px;
+  font-size: 1em;
+  line-height: 110px;
+}
+
+.nav-wrapper .currentDate {
+  font-size: 1em;
   line-height: 110px;
 }
 
@@ -80,8 +85,13 @@ body {
   width: 50%;
 }
 
+.counterTitle {
+  flex: 0 100%;
+}
+
 .item {
   flex: 48%;
+  text-align: center;
   margin: 1% 1% 1% 1%;
   max-width: 48%;
   background-color: #8dc73f;
@@ -92,13 +102,13 @@ body {
 }
 
 .item .omulet {
+  background-color: red;
   flex: 0 35%;
-  margin: 10% auto;
   height: 80%;
 }
 
 .item .omulet img {
-  margin-top: 20%;
+  /* margin-top: 20%; */
   max-width: 100%;
   max-height: 100%;
 }
@@ -106,12 +116,14 @@ body {
 .item .counter {
   flex: 0 65%;
   background-color: blue;
-  margin: 10% auto;
   height: 80%;
 }
 
-.left p {
-  font-size: 50px;
+.item p {
+  /* titlu nealiniat in divul de contori */
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
 }
 
 .right {

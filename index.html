@@ -19,23 +19,41 @@
       <div class="nav-wrapper">
         <div class="logo"><img src="./img/logo/logo.png" alt="Valeo" /></div>
         <div class="headerMessage"><p></p></div>
+        <div id="currentDate" class="currentDate"><p></p></div>
       </div>
     </nav>
     <div class="mainContainer container-fluid">
       <div class="left">
         <div class="item">
+          <div class="counterTitle">
+            <p>
+              ZILE DE LA ULTIMUL ACCIDENT CU INCAPACITATE TEMPORARA DE MUNCA
+            </p>
+          </div>
           <div class="omulet"><img src="./img/omuleti/a.jpg" /></div>
           <div class="counter"></div>
         </div>
         <div class="item">
+          <div class="counterTitle">
+            <p>ACCIDENTE CU INCAPACITATE TEMPORARA DE MUNCA</p>
+          </div>
           <div class="omulet"><img src="./img/omuleti/b.jpg" /></div>
           <div class="counter"></div>
         </div>
         <div class="item">
+          <div class="counterTitle">
+            <p>ACCIDENTE FARA INCAPACITATE TEMPORARA DE MUNCA</p>
+          </div>
           <div class="omulet"><img src="./img/omuleti/c.jpg" /></div>
           <div class="counter"></div>
         </div>
         <div class="item">
+          <div class="counterTitle">
+            <p>
+              ACCIDENTE CONTRACTORI - ZILE DE LA FARA INCAPACITATE TEMPORARA DE
+              MUNCA
+            </p>
+          </div>
           <div class="omulet">
             <img src="./img/omuleti/d.jpg" />
           </div>
@@ -60,6 +78,7 @@
       </div>
     </div>
     <script type="text/javascript" src="./js/counter.js"></script>
+    <script type="text/javascript" src="./js/date.js"></script>
     <script>
       const { ipcRenderer } = require("electron");
       ipcRenderer.on("reset", function() {
