@@ -13,9 +13,11 @@
   <body>
     <div class="reset">
       <div class="resetButtonContainer">
-        <button class="btn btn-primary" onClick="reset();">Reset Timer</button>
-        <button class="btn btn-primary" onClick="clearHistoricalData();">
-          Clear historical data
+        <button class="btn btn-primary" onClick="resetZile();">
+          Reseteaza Zile Fara Accidente
+        </button>
+        <button class="btn btn-primary" onClick="resetZileContractori();">
+          Reseteaza Zile Fara Accidente CONTRACTORI
         </button>
         <button
           type="button"
@@ -37,31 +39,73 @@
           <button class="btn btn-primary" type="submit">Set</button>
         </form>
       </div>
-      <div id="history"><h3>Historical data:</h3></div>
+      <div id="headerMessage">
+        <form>
+          <Label>Enter message:</Label>
+          <input
+            type="text"
+            id="message"
+            placeholder="Enter header message"
+            autofocus
+          />
+          <button class="btn btn-primary" type="submit">Set</button>
+        </form>
+      </div>
+      <div class="accidenteCuIncapacitate">
+        <form id="formAccidenteCuIncapacitate">
+          <Label>Accidente cu incapacitate temporara de munca:</Label>
+          <input
+            type="text"
+            id="numarAccidenteCuIncapacitate"
+            placeholder="Numar accidente"
+            autofocus
+          />
+          <button class="btn btn-primary" type="submit">Set</button>
+        </form>
+      </div>
+      <div class="accidenteFaraIncapacitate">
+        <form id="formAccidenteFaraIncapacitate">
+          <Label>Accidente fara incapacitate temporara de munca:</Label>
+          <input
+            type="text"
+            id="numarAccidenteFaraIncapacitate"
+            placeholder="Numar accidente"
+            autofocus
+          />
+          <button class="btn btn-primary" type="submit">Set</button>
+        </form>
+      </div>
     </div>
 
     <script>
       const { ipcRenderer } = require("electron");
-      document.getElementById("history").innerHTML +=
-        window.localStorage.historicalStartTimes;
-      const form = document.querySelector("form");
-      form.addEventListener("submit", function submitForm(e) {
+      const formAccidente = document.querySelector(
+        "formAccidenteCuIncapacitate"
+      );
+      formAccidente.addEventListener("submit", function submitForm(e) {
         e.preventDefault();
-        const message = document.querySelector("#message").value;
-        ipcRenderer.send("submit", message);
+        const message = document.querySelector("#numarAccidenteCuIncapacitate")
+          .value;
+        ipcRenderer.send("submitAccidenteCuIncapacitate", message);
       });
 
-      function reset() {
-        ipcRenderer.send("reset");
+      const formAccidenteFaraIncapacitate = document.querySelector(
+        "formAccidenteFaraIncapacitate"
+      );
+      formAccidente.addEventListener("submit", function submitForm(e) {
+        e.preventDefault();
+        const message = document.querySelector(
+          "#numarAccidenteFaraIncapacitate"
+        ).value;
+        ipcRenderer.send("submitAccidenteFaraIncapacitate", message);
+      });
+
+      function resetZile() {
+        ipcRenderer.send("resetZile");
       }
 
-      function clearHistoricalData() {
-        const startTimes = window.localStorage.historicalStartTimes.split(
-          "<br/>"
-        );
-        window.localStorage.historicalStartTimes =
-          startTimes[startTimes.length - 2] + "<br/>";
-        window.close();
+      function resetZileContractori() {
+        ipcRenderer.send("resetZileContractori");
       }
 
       function closeResetWindow() {

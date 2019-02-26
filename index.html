@@ -32,7 +32,15 @@
           </div>
           <div class="omulet"><img src="./img/omuleti/a.jpg" /></div>
           <div class="counterContainer">
-            <div id="zileAccidentCuIncapacitate" class="counter"></div>
+            <div id="zileAccidentCuIncapacitate" class="counter">
+              <!-- <span class="timeel days">00</span>
+              <span class="timeel timeRefDays">days</span>
+              <span class="timeel hours">00</span>
+              <span class="timeel timeRefHours">hours</span>
+              <span class="timeel minutes">00</span>
+              <span class="timeel timeRefMinutes">minutes</span>-->
+              <span class="timeel seconds">00</span>
+            </div>
           </div>
         </div>
         <div class="item">
@@ -64,20 +72,17 @@
             <img src="./img/omuleti/d.jpg" />
           </div>
           <div class="counterContainer">
-            <div id="zileContractori" class="counter"></div>
+            <div id="zileContractori" class="counter">
+              <!-- <span class="timeel days">00</span>
+              <span class="timeel timeRefDays">days</span>
+              <span class="timeel hours">00</span>
+              <span class="timeel timeRefHours">hours</span>
+              <span class="timeel minutes">00</span>
+              <span class="timeel timeRefMinutes">minutes</span>-->
+              <span class="timeel seconds">00</span>
+            </div>
           </div>
         </div>
-        <!-- <p>ZILE DE LA ULTIMUL INCIDENT</p> -->
-        <!-- <div class="counter" id="counter"> -->
-        <!-- <span class="timeel days">00</span>
-          <span class="timeel timeRefDays">days</span>
-          <span class="timeel hours">00</span>
-          <span class="timeel timeRefHours">hours</span>
-          <span class="timeel minutes">00</span>
-          <span class="timeel timeRefMinutes">minutes</span> -->
-        <!-- <span class="timeel seconds">00</span> -->
-        <!-- <span class="timeel timeRefSeconds">seconds</span> -->
-        <!-- </div> -->
       </div>
       <div class="right">
         <div class="slider" id="main-slider">
@@ -85,12 +90,19 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="./js/counter.js"></script>
+    <script type="text/javascript" src="./js/counterZile.js"></script>
+    <script
+      type="text/javascript"
+      src="./js/counterZileContractori.js"
+    ></script>
     <script type="text/javascript" src="./js/date.js"></script>
     <script>
       const { ipcRenderer } = require("electron");
-      ipcRenderer.on("reset", function() {
-        resetTimer();
+      ipcRenderer.on("resetZile", function() {
+        resetZileTimer();
+      });
+      ipcRenderer.on("resetZileContractori", function() {
+        resetZileContractoriTimer();
       });
 
       const headerMessage = document.querySelector(".headerMessage");
@@ -99,9 +111,12 @@
         "Zile de la ultimul incident produs";
       headerMessage.innerText = window.localStorage.headerMessage;
 
-      ipcRenderer.on("submit", function(e, message) {
-        window.localStorage.headerMessage = message;
-        headerMessage.innerText = window.localStorage.headerMessage;
+      ipcRenderer.on("submitAccidenteCuIncapacitate", function(e, message) {
+        console.log(`got e:${e}, message:${message}`);
+        var zileAccidentCuIncapacitate = document.getElementById(
+          "zileAccidentCuIncapacitate"
+        );
+        zileAccidentCuIncapacitate.innerText = message;
       });
     </script>
   </body>

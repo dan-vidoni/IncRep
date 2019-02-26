@@ -1,25 +1,9 @@
 (function startTimer() {
-  if (!window.localStorage.startTime) {
-    window.localStorage.startTime = new Date(Date.now());
-    recordHistoricalData();
-  }
-  countUpFromTime(window.localStorage.startTime);
+  countUpFromTime(new Date(Date.now()));
 })();
 
-function recordHistoricalData() {
-  if (window.localStorage.startTime) {
-    window.localStorage.historicalStartTimes =
-      window.localStorage.historicalStartTimes || "";
-    window.localStorage.historicalStartTimes = window.localStorage.historicalStartTimes.concat(
-      window.localStorage.startTime + " <br/>"
-    );
-  }
-}
-
-function resetTimer() {
-  window.localStorage.startTime = new Date(Date.now());
-  recordHistoricalData();
-  countUpFromTime(window.localStorage.startTime);
+function resetZileTimer() {
+  countUpFromTime(new Date(Date.now()));
 }
 
 function countUpFromTime(countFrom) {
@@ -42,7 +26,7 @@ function countUpFromTime(countFrom) {
       1
   );
 
-  var counter = document.getElementById("counter");
+  var counter = document.getElementById("zileAccidentCuIncapacitate");
   // counter.getElementsByClassName("days")[0].innerHTML = days;
   // counter.getElementsByClassName("hours")[0].innerHTML = hours;
   // counter.getElementsByClassName("minutes")[0].innerHTML = mins;

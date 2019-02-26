@@ -64,8 +64,13 @@ function createResetWindow() {
   });
 }
 
-ipcMain.on("reset", function() {
-  mainWin.webContents.send("reset");
+ipcMain.on("resetZile", function() {
+  mainWin.webContents.send("resetZile");
+  dashboardWin.close();
+});
+
+ipcMain.on("resetZileContractori", function() {
+  mainWin.webContents.send("resetZileContractori");
   dashboardWin.close();
 });
 
@@ -73,8 +78,13 @@ ipcMain.on("closeResetWindow", function() {
   dashboardWin.close();
 });
 
-ipcMain.on("submit", function(e, message) {
-  mainWin.webContents.send("submit", message);
+ipcMain.on("submitAccidenteCuIncapacitate", function(e, message) {
+  mainWin.webContents.send("submitAccidenteCuIncapacitate", message);
+  dashboardWin.close();
+});
+
+ipcMain.on("submitAccidenteFaraIncapacitate", function(e, message) {
+  mainWin.webContents.send("submitAccidenteFaraIncapacitate", message);
   dashboardWin.close();
 });
 
