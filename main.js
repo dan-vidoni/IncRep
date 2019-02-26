@@ -9,8 +9,9 @@ const { addBypassChecker } = require("electron-compile");
 const url = require("url");
 const path = require("path");
 
+require("electron-reload")(__dirname);
 //TODO change to production when publishing
-process.env.NODE_ENV = "production";
+// process.env.NODE_ENV = "production";
 
 let mainWin;
 let dashboardWin;
@@ -26,7 +27,8 @@ addBypassChecker(filePath => {
 });
 
 function createWindow() {
-  mainWin = new BrowserWindow({ fullscreen: true });
+  mainWin = new BrowserWindow();
+  // mainWin = new BrowserWindow({ fullscreen: true });
   mainWin.loadURL(
     url.format({
       pathname: path.join(__dirname, "index.html"),
