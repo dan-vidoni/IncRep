@@ -1,9 +1,20 @@
 (function startTimer() {
-  countUpFromTime(new Date(Date.now()));
+  if (window.localStorage.dataStartZileFaraAccidente) {
+    countUpFromTime(window.localStorage.dataStartZileFaraAccidente);
+  } else {
+    countUpFromTime(new Date(Date.now()));
+  }
 })();
 
 function resetZileTimer() {
   countUpFromTime(new Date(Date.now()));
+}
+
+function countDays(days) {
+  var startdate = moment();
+  startdate = startdate.subtract(days, "days");
+  window.localStorage.dataStartZileFaraAccidente = startdate.toDate();
+  countUpFromTime(startdate.toDate());
 }
 
 function countUpFromTime(countFrom) {
@@ -27,14 +38,13 @@ function countUpFromTime(countFrom) {
   );
 
   var counter = document.getElementById("zileAccidentCuIncapacitate");
-  // counter.getElementsByClassName("days")[0].innerHTML = days;
+  counter.getElementsByClassName("days")[0].innerHTML = days;
   // counter.getElementsByClassName("hours")[0].innerHTML = hours;
   // counter.getElementsByClassName("minutes")[0].innerHTML = mins;
-  counter.getElementsByClassName("seconds")[0].innerHTML = secs;
+  // counter.getElementsByClassName("seconds")[0].innerHTML = secs;
 
   clearTimeout(countUpFromTime.interval);
   countUpFromTime.interval = setTimeout(function() {
     countUpFromTime(countFrom);
   }, 1000);
-  //TODO change interval time to one minute - maybe
 }

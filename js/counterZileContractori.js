@@ -1,9 +1,24 @@
+const moment = require("moment");
+
 (function startTimer() {
-  countContractorDaysUpFromTime(new Date(Date.now()));
+  if (window.localStorage.dataStartZileFaraAccidenteContractori) {
+    countContractorDaysUpFromTime(
+      window.localStorage.dataStartZileFaraAccidenteContractori
+    );
+  } else {
+    countContractorDaysUpFromTime(new Date(Date.now()));
+  }
 })();
 
 function resetZileContractoriTimer() {
   countContractorDaysUpFromTime(new Date(Date.now()));
+}
+
+function countDaysContractori(days) {
+  var startdate = moment();
+  startdate = startdate.subtract(days, "days");
+  window.localStorage.dataStartZileFaraAccidenteContractori = startdate.toDate();
+  countContractorDaysUpFromTime(startdate.toDate());
 }
 
 function countContractorDaysUpFromTime(countFrom) {
@@ -27,14 +42,13 @@ function countContractorDaysUpFromTime(countFrom) {
   );
 
   var counter = document.getElementById("zileContractori");
-  // counter.getElementsByClassName("days")[0].innerHTML = days;
+  counter.getElementsByClassName("days")[0].innerHTML = days;
   // counter.getElementsByClassName("hours")[0].innerHTML = hours;
   // counter.getElementsByClassName("minutes")[0].innerHTML = mins;
-  counter.getElementsByClassName("seconds")[0].innerHTML = secs;
+  // counter.getElementsByClassName("seconds")[0].innerHTML = secs;
 
   clearTimeout(countContractorDaysUpFromTime.interval);
   countContractorDaysUpFromTime.interval = setTimeout(function() {
     countContractorDaysUpFromTime(countFrom);
   }, 1000);
-  //TODO change interval time to one minute - maybe
 }

@@ -141,32 +141,3 @@ body {
   padding: 0;
   width: 48%;
 }
-
-/* .counter {
-  margin: 0 auto;
-  text-align: center;
-  font-size: 70px;
-  font-weight: bold;
-  line-height: 140px;
-  background-color: white;
-  border: 1px solid #4e6b7c;
-  width: 140px;
-  height: 140px;
-} */
-
-.reset {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.resetButtonContainer {
-  padding: 20px;
-}
-
-.history {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}

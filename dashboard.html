@@ -6,7 +6,7 @@
       type="text/css"
       href="libs/bootstrap/bootstrap.min.css"
     />
-    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="./css/dashboard-styles.css" />
     <meta charset="UTF-8" />
     <title>Dashboard</title>
   </head>
@@ -19,33 +19,39 @@
         <button class="btn btn-primary" onClick="resetZileContractori();">
           Reseteaza Zile Fara Accidente CONTRACTORI
         </button>
-        <button
-          type="button"
-          class="btn btn-dark"
-          onClick="closeResetWindow();"
-        >
-          Cancel
-        </button>
       </div>
       <div id="headerMessage">
-        <form>
-          <Label>Enter message:</Label>
+        <form id="formHeaderMessage">
+          <Label>Introduceti mesajul din titlu:</Label>
+          <input type="text" id="message" placeholder="Mesajul" autofocus />
+          <button class="btn btn-primary" type="submit">Set</button>
+        </form>
+      </div>
+      <div class="zileFaraAccidente">
+        <form id="formZileFaraAccidente">
+          <Label
+            >Zile de la ultimul accident cu incapacitate temporara de
+            munca:</Label
+          >
           <input
             type="text"
-            id="message"
-            placeholder="Enter header message"
+            id="zileFaraAccidente"
+            placeholder="Numar zile"
             autofocus
           />
           <button class="btn btn-primary" type="submit">Set</button>
         </form>
       </div>
-      <div id="headerMessage">
-        <form>
-          <Label>Enter message:</Label>
+      <div class="zileFaraAccidenteContractori">
+        <form id="formZileFaraAccidenteContractori">
+          <Label
+            >CONTACTORI: Zile de la ultimul accident cu incapacitate temporara
+            de munca:</Label
+          >
           <input
             type="text"
-            id="message"
-            placeholder="Enter header message"
+            id="zileFaraAccidenteContractori"
+            placeholder="Numar zile"
             autofocus
           />
           <button class="btn btn-primary" type="submit">Set</button>
@@ -75,29 +81,70 @@
           <button class="btn btn-primary" type="submit">Set</button>
         </form>
       </div>
+      <button type="button" class="btn btn-dark" onClick="closeResetWindow();">
+        Cancel
+      </button>
     </div>
 
     <script>
       const { ipcRenderer } = require("electron");
-      const formAccidente = document.querySelector(
-        "formAccidenteCuIncapacitate"
-      );
-      formAccidente.addEventListener("submit", function submitForm(e) {
+
+      const formHeaderMessage = document.querySelector("#formHeaderMessage");
+      formHeaderMessage.addEventListener("submit", function submitForm(e) {
         e.preventDefault();
-        const message = document.querySelector("#numarAccidenteCuIncapacitate")
-          .value;
-        ipcRenderer.send("submitAccidenteCuIncapacitate", message);
+        const message = document.querySelector("#message").value;
+        ipcRenderer.send("submit", message);
       });
+      const formAccidenteCuIncapacitate = document.querySelector(
+        "#formAccidenteCuIncapacitate"
+      );
+
+      formAccidenteCuIncapacitate.addEventListener(
+        "submit",
+        function submitForm(e) {
+          e.preventDefault();
+          const message = document.querySelector(
+            "#numarAccidenteCuIncapacitate"
+          ).value;
+          ipcRenderer.send("submitAccidenteCuIncapacitate", message);
+        }
+      );
 
       const formAccidenteFaraIncapacitate = document.querySelector(
-        "formAccidenteFaraIncapacitate"
+        "#formAccidenteFaraIncapacitate"
       );
-      formAccidente.addEventListener("submit", function submitForm(e) {
+      formAccidenteFaraIncapacitate.addEventListener(
+        "submit",
+        function submitForm(e) {
+          e.preventDefault();
+          const message = document.querySelector(
+            "#numarAccidenteFaraIncapacitate"
+          ).value;
+          ipcRenderer.send("submitAccidenteFaraIncapacitate", message);
+        }
+      );
+
+      const formZileFaraAccidenteContractori = document.querySelector(
+        "#formZileFaraAccidenteContractori"
+      );
+      formZileFaraAccidenteContractori.addEventListener(
+        "submit",
+        function submitForm(e) {
+          e.preventDefault();
+          const message = document.querySelector(
+            "#zileFaraAccidenteContractori"
+          ).value;
+          ipcRenderer.send("submitZileFaraAccidenteContractori", message);
+        }
+      );
+
+      const formZileFaraAccidente = document.querySelector(
+        "#formZileFaraAccidente"
+      );
+      formZileFaraAccidente.addEventListener("submit", function submitForm(e) {
         e.preventDefault();
-        const message = document.querySelector(
-          "#numarAccidenteFaraIncapacitate"
-        ).value;
-        ipcRenderer.send("submitAccidenteFaraIncapacitate", message);
+        const message = document.querySelector("#zileFaraAccidente").value;
+        ipcRenderer.send("submitZileFaraAccidente", message);
       });
 
       function resetZile() {

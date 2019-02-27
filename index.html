@@ -33,13 +33,13 @@
           <div class="omulet"><img src="./img/omuleti/a.jpg" /></div>
           <div class="counterContainer">
             <div id="zileAccidentCuIncapacitate" class="counter">
-              <!-- <span class="timeel days">00</span>
-              <span class="timeel timeRefDays">days</span>
+              <span class="timeel days">0</span>
+              <!--<span class="timeel timeRefDays">days</span>
               <span class="timeel hours">00</span>
               <span class="timeel timeRefHours">hours</span>
               <span class="timeel minutes">00</span>
               <span class="timeel timeRefMinutes">minutes</span>-->
-              <span class="timeel seconds">00</span>
+              <!-- <span class="timeel seconds">00</span> -->
             </div>
           </div>
         </div>
@@ -49,7 +49,9 @@
           </div>
           <div class="omulet"><img src="./img/omuleti/b.jpg" /></div>
           <div class="counterContainer">
-            <div id="accidenteCuIncapacitate" class="counter"></div>
+            <div id="numarAccidenteCuIncapacitate" class="counter">
+              <span id=""></span>
+            </div>
           </div>
         </div>
         <div class="item">
@@ -58,7 +60,9 @@
           </div>
           <div class="omulet"><img src="./img/omuleti/c.jpg" /></div>
           <div class="counterContainer">
-            <div id="accidenteFaraIncapacitate" class="counter"></div>
+            <div id="accidenteFaraIncapacitate" class="counter">
+              <span id="numarAccidenteFaraIncapacitate"></span>
+            </div>
           </div>
         </div>
         <div class="item">
@@ -73,13 +77,13 @@
           </div>
           <div class="counterContainer">
             <div id="zileContractori" class="counter">
-              <!-- <span class="timeel days">00</span>
-              <span class="timeel timeRefDays">days</span>
+              <span class="timeel days">0</span>
+              <!--<span class="timeel timeRefDays">days</span>
               <span class="timeel hours">00</span>
               <span class="timeel timeRefHours">hours</span>
               <span class="timeel minutes">00</span>
               <span class="timeel timeRefMinutes">minutes</span>-->
-              <span class="timeel seconds">00</span>
+              <!-- <span class="timeel seconds">00</span> -->
             </div>
           </div>
         </div>
@@ -111,12 +115,46 @@
         "Zile de la ultimul incident produs";
       headerMessage.innerText = window.localStorage.headerMessage;
 
+      ipcRenderer.on("submit", function(e, message) {
+        window.localStorage.headerMessage = message;
+        headerMessage.innerText = window.localStorage.headerMessage;
+      });
+
+      const numarAccidenteCuIncapacitate = document.querySelector(
+        "#numarAccidenteCuIncapacitate"
+      );
+      numarAccidenteCuIncapacitate.innerText =
+        window.localStorage.numarAccidenteCuIncapacitate || 0;
+
       ipcRenderer.on("submitAccidenteCuIncapacitate", function(e, message) {
-        console.log(`got e:${e}, message:${message}`);
-        var zileAccidentCuIncapacitate = document.getElementById(
-          "zileAccidentCuIncapacitate"
-        );
-        zileAccidentCuIncapacitate.innerText = message;
+        window.localStorage.numarAccidenteCuIncapacitate =
+          parseInt(message) || 0;
+        numarAccidenteCuIncapacitate.innerText =
+          window.localStorage.numarAccidenteCuIncapacitate;
+      });
+
+      const numarAccidenteFaraIncapacitate = document.querySelector(
+        "#numarAccidenteFaraIncapacitate"
+      );
+      numarAccidenteFaraIncapacitate.innerText =
+        window.localStorage.numarAccidenteFaraIncapacitate || 0;
+
+      ipcRenderer.on("submitAccidenteFaraIncapacitate", function(e, message) {
+        window.localStorage.numarAccidenteFaraIncapacitate =
+          parseInt(message) || 0;
+        numarAccidenteFaraIncapacitate.innerText =
+          window.localStorage.numarAccidenteFaraIncapacitate;
+      });
+
+      ipcRenderer.on("submitZileFaraAccidenteContractori", function(
+        e,
+        message
+      ) {
+        countDaysContractori(parseInt(message));
+      });
+
+      ipcRenderer.on("submitZileFaraAccidente", function(e, message) {
+        countDays(parseInt(message));
       });
     </script>
   </body>

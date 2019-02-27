@@ -9,9 +9,9 @@ const { addBypassChecker } = require("electron-compile");
 const url = require("url");
 const path = require("path");
 
-require("electron-reload")(__dirname);
+// require("electron-reload")(__dirname);
 //TODO change to production when publishing
-// process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "production";
 
 let mainWin;
 let dashboardWin;
@@ -74,7 +74,8 @@ ipcMain.on("resetZileContractori", function() {
   dashboardWin.close();
 });
 
-ipcMain.on("closeResetWindow", function() {
+ipcMain.on("submit", function(e, message) {
+  mainWin.webContents.send("submit", message);
   dashboardWin.close();
 });
 
@@ -85,6 +86,20 @@ ipcMain.on("submitAccidenteCuIncapacitate", function(e, message) {
 
 ipcMain.on("submitAccidenteFaraIncapacitate", function(e, message) {
   mainWin.webContents.send("submitAccidenteFaraIncapacitate", message);
+  dashboardWin.close();
+});
+
+ipcMain.on("submitZileFaraAccidente", function(e, message) {
+  mainWin.webContents.send("submitZileFaraAccidente", message);
+  dashboardWin.close();
+});
+
+ipcMain.on("submitZileFaraAccidenteContractori", function(e, message) {
+  mainWin.webContents.send("submitZileFaraAccidenteContractori", message);
+  dashboardWin.close();
+});
+
+ipcMain.on("closeResetWindow", function() {
   dashboardWin.close();
 });
 
