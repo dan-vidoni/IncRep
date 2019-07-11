@@ -11,11 +11,15 @@ const moment = require("moment");
 })();
 
 function resetZileContractoriTimer() {
-  countContractorDaysUpFromTime(new Date(Date.now()));
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+
+  countContractorDaysUpFromTime(now);
 }
 
 function countDaysContractori(days) {
   var startdate = moment();
+  startdate.set({hour:0,minute:0,second:0,millisecond:0});
   startdate = startdate.subtract(days, "days");
   window.localStorage.dataStartZileFaraAccidenteContractori = startdate.toDate();
   countContractorDaysUpFromTime(startdate.toDate());
